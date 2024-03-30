@@ -101,5 +101,88 @@ public class MyStringBuilder {
             length++;
         }
         return this;
+    } 
+    /**
+     * This method appends a string.
+     * 
+     * @param str string to be appended
+     * @return mystringbuilder object
+     */
+    public MyStringBuilder append(String str){
+
+        if (str == null) {
+            throw new NullPointerException
+            (NULL_POINTER_EXCEPTION);
+        }
+        else if (str.length() == 0) {
+            return this;
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            this.append(str.charAt(i));
+            length++;
+        }
+        return this;
+    }
+
+    /**
+     * This method returns the stringbuilder as a string.
+     * 
+     * @return returns the stringbuilder as a string.
+     */
+    public String toString() {
+        String realString = EMPTY_STRING;
+
+        if (length == 0) {
+            return EMPTY_STRING;
+        }
+
+        CharNode currChar = start;
+        while (currChar.getNext() != null) {
+            realString += currChar.getData();
+            currChar = currChar.getNext();
+        }
+        realString += currChar.getData();
+
+        return realString;
+    }
+
+    /**
+     * Returns the stringbuilder as a string starting from startidx.
+     * 
+     * @param startIdx the start index.
+     * @return returns the substring.
+     */
+    public String subString(int startIdx){
+        String fullString = this.toString();
+
+        if ((startIdx < 0) || (startIdx > fullString.length() - ONE)) {
+            throw new IndexOutOfBoundsException(INDEX_OUT_OF_BOUNDS_EXCEPTION);
+        }
+
+        return fullString.substring(startIdx);
+    }
+
+    /**
+     * Returns the stringbuilder as a string starting from startidx to endidx.
+     * 
+     * @param startIdx the start index.
+     * @param endIdx the end index.
+     * @return returns the substring. 
+     */
+    public String subString(int startIdx, int endIdx) {
+        if (startIdx == endIdx) {
+            return EMPTY_STRING;
+        }
+
+        String fullString = this.toString();
+
+        if ((startIdx < 0) || (startIdx > fullString.length() - ONE) || 
+            (endIdx > fullString.length()) || (endIdx < startIdx)) {
+            throw new IndexOutOfBoundsException
+            (INDEX_OUT_OF_BOUNDS_EXCEPTION);
+        }
+
+        return fullString.substring(startIdx, endIdx);
     }
 }
