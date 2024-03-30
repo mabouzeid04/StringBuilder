@@ -54,4 +54,52 @@ public class MyStringBuilder {
             this.append(str.charAt(i));
         }
     }
+
+    /**
+     * This is a constructor that uses another stringbuilder object. 
+     * 
+     * @param other object to be deep copied.
+     */
+    public MyStringBuilder(MyStringBuilder other){
+
+        if (other == null) {
+            throw new NullPointerException
+            (NULL_POINTER_EXCEPTION);
+        }
+        String newString = other.toString();
+
+        for (int i = 0; i < newString.length(); i++) {
+            this.append(newString.charAt(i)); 
+        }
+    }
+
+    /**
+     * this is a getter method that returns the string length.
+     * 
+     * @return length;
+     */
+    public int length() {
+        return length;
+    }
+
+    /**
+     * This method appends a character.
+     * 
+     * @param ch character to be appended
+     * @return mystringbuilder object
+     */
+    public MyStringBuilder append(char ch) {
+        CharNode currChar = new CharNode(ch);
+        if (length == 0) {
+            start = currChar;
+            end = currChar;
+            length = ONE;
+        }
+        else {
+            this.end.setNext(currChar);
+            end = currChar;
+            length++;
+        }
+        return this;
+    }
 }

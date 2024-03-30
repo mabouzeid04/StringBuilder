@@ -38,6 +38,26 @@ public class CharNode {
         return next;
     }
 
-    
-    
+    /**
+     * Changes the data represented by this node. 
+     *
+     * @param  newData The new char to be stored in this node. 
+     * @return This CharNode for chaining and testing.
+     */
+    public CharNode setData(char newData) {
+        data = newData;
+        return this;
+    }
+
+    /**
+     * Changes the next CharNode. 
+     *
+     * @param  newNext The CharNode to change this node's next pointer to. 
+     * @return This node for chaining and testing.
+     */
+    public CharNode setNext(CharNode newNext) {
+        next = newNext;
+        return this;
+    }
+
 }
